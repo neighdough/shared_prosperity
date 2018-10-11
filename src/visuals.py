@@ -19,12 +19,14 @@ def poverty():
         y = cur_df[pov] / cur_df["pop_"+year]
         x = [year for i in range(y.shape[0])]
         plt.scatter(cur_df.pct_wh, y, label=year, s=8)
-        tck = list(np.arange(0, 110, 10))
-        tck_label = ["{}%".format(i) for i in tck]
+        tck = list(np.arange(0, 1.1, .1))
+        tck_label = ["{:.0f}%".format(i*100) for i in tck]
         plt.yticks(tck,tck_label)
         plt.xticks(tck, tck_label)
         plt.xlabel("Percent Caucasian")
         plt.ylabel("Percent at or Below Poverty")
+        plt.ylim(-.01,1.01)
+        plt.xlim(-.01,1.01)
         plt.title(year)
         plt.savefig("../output/pov_scatter_"+year+".png", dpi=300)
         plt.close()
